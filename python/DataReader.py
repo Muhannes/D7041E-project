@@ -33,7 +33,8 @@ class DataReader(object):
     def formatData(self, Data):
         newData = []
         for line in Data:
-            newData.append(line[3:]) #strips away userId, sessionId and repId      
+            line = [float(i) for i in line[3:]]
+            newData.append(line) #strips away userId, sessionId, repId and converts to float
             
         return np.matrix(newData)
         
