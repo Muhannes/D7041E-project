@@ -19,10 +19,9 @@ def Main():
     person1 = DataCluster(userData[:300])
     
     classifier = Classifier()
-    distances = classifier.compare_all(person1, userData[300:])
-    print("Mean distance for correct user: " + str(np.mean(distances)))
-    distances2 = classifier.compare_all(person1, userData2)
-    print("Mean distance for incorrect user: " + str(np.mean(distances2)))
+    
+    print "correct person: " + str(classifier.compare_all(person1, userData[300:], True))
+    print "wrong person: " + str(classifier.compare_all(person1, userData2, False))
     
     
 Main()

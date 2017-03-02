@@ -5,15 +5,19 @@ class Classifier(object):
         pass
     
     # Check L2 distance to user mean, see if close enough
-    def compare(self, user, testData):
+    def compare(self, user, testData, max_distance):
         # The L2 distance
         distance = np.sqrt(np.sum(np.power(user.mean - testData, 2)))
-        return distance
+        return distance < max_distance
+        
 
     
-    def compare_all(self, user, testData):
-        distances = []
+    def compare_all(self, user, testData, label):
+        predictions = []
         for data in testData:
-            distance = self.compare(user, data)
-            distances.append(distance)
-        return distances
+            prediction = self.compare(user, data, user.std*4)
+            if prediction == label:
+                predictions.append(1)
+            else:
+                predictions.append(0)
+        return np.mean(predictions)    
