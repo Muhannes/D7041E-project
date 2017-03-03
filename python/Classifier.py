@@ -15,7 +15,7 @@ class Classifier(object):
     def compare_all(self, user, testData, label):
         predictions = []
         for data in testData:
-            prediction = self.compare(user, data, user.std*4)
+            prediction = self.compare(user, data, user.accepted_deviation)
             if prediction == label:
                 predictions.append(1)
             else:
