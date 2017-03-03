@@ -8,7 +8,7 @@ class DataCluster(object):
 
     def train(self, X):
         # standard deviation( could come in handy.)
-        self.accepted_deviation = np.std(X)
+        self.accepted_deviation = np.std(X, axis=0)
         print self.accepted_deviation
         self.min = np.min(X)
         self.max = np.max(X)
@@ -25,7 +25,7 @@ class DataCluster(object):
         accuracy = 0
         accepted_accuracy = 0.90
         learning_rate = 1.05
-        
+#         
         while(accuracy < accepted_accuracy):
             accuracy = classifier.compare_all(self, X, True)
             print str(accuracy)
