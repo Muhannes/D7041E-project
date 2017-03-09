@@ -19,7 +19,7 @@ class Classifier(object):
             if(abs(differance[0][i]) > deviation[0][i]):
                 counter = counter + 1
 #                 print "INDEX differs : "+str(i)
-                if(counter > 0):
+                if(counter > 10):
                     return False
         return True
             

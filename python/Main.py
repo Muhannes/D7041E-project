@@ -15,11 +15,11 @@ def Main():
         wrong_person_accuracy = []
         owner_index = k # index for the user that is to be tested
         first_time = True # temp variable for checking if first time creating test_data_wrong
+        print "testing for person "+str(k)+" created!"
         for i in range(0,50):
             userDataRaw = allUserData[i] #data from 1 user
             userData = dataReader.formatData(userDataRaw) #formats data (strips user and session ids etc), returns Matrix.
             if i == owner_index:
-                print "person1 created!"
                 np.random.shuffle(userData) # Shuffle to get data from different sessions
                 person1 = DataCluster(userData[0:300]) # creates the person to be tested
                 test_data_right = userData[300:]
@@ -37,8 +37,8 @@ def Main():
     
     
     
-    print "correct person: " + str(np.mean(correct_person_accuracy))
-    print "wrong person: " + str(np.mean(wrong_person_accuracy))
+    print "correct person identified accuracy: " + str(np.mean(correct_person_accuracy))
+    print "wrong person identified accuracy: " + str(np.mean(wrong_person_accuracy))
     
     
 Main()
