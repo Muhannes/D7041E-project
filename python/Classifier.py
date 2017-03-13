@@ -10,7 +10,7 @@ class Classifier(object):
 #         distance = np.sqrt(np.sum(np.power(user.mean - testData, 2)))
 #         return distance < max_distance
         
-    def compare(self, user, testData):
+    def compare(self, user, testData, deviationDimesions = 10):
         counter = 0
         differance = np.subtract(user.mean, testData)
         differance = differance.tolist()
@@ -19,14 +19,14 @@ class Classifier(object):
             if(abs(differance[0][i]) > deviation[0][i]):
                 counter = counter + 1
 #                 print "INDEX differs : "+str(i)
-                if(counter > 10):
+                if(counter > deviationDimesions):
                     return False
         return True
             
-    def compare_all(self, user, testData, label):
+    def compare_all(self, user, testData, label, dimDev):
         predictions = []
         for data in testData:
-            prediction = self.compare(user, data)
+            prediction = self.compare(user, data, dimDev)
             if prediction == label:
                 predictions.append(1)
             else:
